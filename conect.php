@@ -1,8 +1,8 @@
 <?php
 
 $mysqli = new mysqli(
-    'localhost',
-    'root',
-    '',
-    'gb'
+    'remotemysql.com',
+    '0fWqbHGnaG',
+    'xFFdNYpBSO',
+    '0fWqbHGnaG'
 );
