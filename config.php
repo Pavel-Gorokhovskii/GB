@@ -3,5 +3,5 @@ $pagesize = 3;
 
 $host = 'remotemysql.com';
 $user = '0fWqbHGnaG';
-$password = 'xFFdNYpBSO';
+$password = 'xM7qhAD2e8';
 $database = '0fWqbHGnaG';
