@@ -1,8 +1,7 @@
 <?php
-
 $mysqli = new mysqli(
-    'remotemysql.com',
-    '0fWqbHGnaG',
-    'xFFdNYpBSO',
-    '0fWqbHGnaG'
+    $host,
+    $username,
+    $password,
+    $database
 );
