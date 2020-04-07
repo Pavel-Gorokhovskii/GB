@@ -1,7 +1,7 @@
 <?php
 $mysqli = new mysqli(
     $host,
-    $username,
+    $user,
     $password,
     $database
 );

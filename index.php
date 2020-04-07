@@ -13,10 +13,10 @@
 </head>
 <?php
 include("config.php");
-include("connect.php");
-include("libery.php");
+include("conect.php");
+include("function.php");
 
-$result_count = $mysqli->query('SELECT count(*) FROM guests'); //считаем количество строк в таблице
+$result_count = $mysqli->query('SELECT count(*) FROM `table`'); //считаем количество строк в таблице
 $count = $result_count->fetch_array(MYSQLI_NUM)[0];
 echo "количество записей: " . $count;
 $result_count->free();
@@ -31,7 +31,7 @@ for ($i = 1; $i <= $pagecount; $i++) {
 $pagenation .= "</div>";
 
 
-$result = $mysqli->query("SELECT * FROM guests LIMIT $startrow, $pagesize");
+$result = $mysqli->query("SELECT * FROM `table` LIMIT $startrow, $pagesize");
 echo $pagenation;
 echo "<table border='1'>\n";
 while ($row = $result->fetch_object()) {
