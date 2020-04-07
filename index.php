@@ -22,9 +22,13 @@ echo "количество записей: " . $count;
 $result_count->free();
 
 $pagecount = ceil($count / $pagesize);
+
 $currientpage = $_GET['page'] ?? 1;
+
 $startrow = ($currientpage - 1) * $pagesize;
-$pagenation = "<div class='pagenation>";
+
+$pagenation = "<div class='pagenation'>";
+
 for ($i = 1; $i <= $pagecount; $i++) {
     $pagenation .= "<a href = '?page=$i'>$i</a>";
 }
