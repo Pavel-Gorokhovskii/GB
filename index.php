@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,16 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        img {
-            width: 1rem;
-        }
-    </style>
+    <link href='style.css' rel='stylesheet'>
 </head>
 <?php
 include("config.php");
 include("conect.php");
 include("function.php");
+
+
+if (isset($_SESSION['bantime']) && ($_SESSION['bantime'] > time())) {
+    echo "Вы забанины на: " . ($_SESSION['bantime'] - time()) . " c";
+}
+
 
 $result_count = $mysqli->query('SELECT count(*) FROM `table`'); //считаем количество строк в таблице
 $count = $result_count->fetch_array(MYSQLI_NUM)[0];
@@ -30,7 +35,12 @@ $startrow = ($currientpage - 1) * $pagesize;
 $pagenation = "<div class='pagenation'>";
 
 for ($i = 1; $i <= $pagecount; $i++) {
-    $pagenation .= "<a href = '?page=$i'>$i</a>";
+    if ($currientpage == $i) {
+        $str = " class = 'selectedpage'";
+    } else {
+        $str = "";
+    }
+    $pagenation .= " <a href = '?page=$i'$str> $i </a>";
 }
 $pagenation .= "</div>";
 

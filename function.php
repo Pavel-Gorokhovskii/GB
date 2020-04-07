@@ -21,3 +21,8 @@ function bbCode($text)
     $text = preg_replace($pat, $rep, $text);
     return $text;
 }
+
+function censor($text)
+{
+    return preg_match('/(дурак|редиска)/iu', $text) ? false : true;
+}
