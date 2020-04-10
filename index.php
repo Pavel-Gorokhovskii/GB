@@ -37,12 +37,11 @@ $parse_url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 $real_page = $domen . $parse_url;
 
-$url_looks = $home . "/GB/" . md5($real_page) . ".dat";
-$count_looks = @file_get_contents($url_looks);
+$count_looks = file_get_contents('session.txt');
 
 if (!$_SESSION["count"]) {
 
-    @file_put_contents($url_looks, ($count_looks + 1));
+    file_put_contents('session.txt', ($count_looks + 1));
 
     $_SESSION["count"] = 1;
 }

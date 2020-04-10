@@ -1,17 +1,12 @@
 <?php
 session_start();
 
-//to reset the saved countdown
-if (!empty($_REQUEST['resetCountdown']))
-{
-unset($_SESSION['startTime']);
+$user = $_SERVER['HTTP_USER_AGENT'];
+$id = $_SERVER['REMOTE_ADDR'];
+$count = 1;
+if ($user = $_SERVER['HTTP_USER_AGENT'] && $id = $_SERVER['REMOTE_ADDR']) {
+    echo $count;
+} else {
+    $count += 1;
+    echo $count;
 }
-
-if (empty($_SESSION['startTime']))
-{
-$_SESSION['startTime'] = time();
-}
-
-//In seconds
-$startTime = time() - $_SESSION['startTime'];
-echo $startTime;
