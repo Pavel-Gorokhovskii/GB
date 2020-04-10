@@ -10,3 +10,20 @@ img {
     font-weight: bold;
     color: blue !important;
 }
+
+.ban {
+    font-size: 48px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+.count {
+    font-size: 24pt;
+
+}
+
+.time {
+    font-size: 24pt;
+}

@@ -15,12 +15,47 @@ include("config.php");
 include("conect.php");
 include("function.php");
 
+// Время посещения страницы
+if (!empty($_REQUEST['resetCountdown'])) {
+    unset($_SESSION['startTime']);
+}
 
-if (isset($_SESSION['bantime']) && ($_SESSION['bantime'] > time())) {
-    echo "Вы забанины на: " . ($_SESSION['bantime'] - time()) . " c";
+if (empty($_SESSION['startTime'])) {
+    $_SESSION['startTime'] = time();
 }
 
 
+$startTime = time() - $_SESSION['startTime'];
+echo "<div class = 'time'>$startTime  секунд назад вы посещали эту страницу </div><br>";
+
+// Счетчик посещения страницы с разных браузеров и устройств
+$home = $_SERVER["DOCUMENT_ROOT"];
+
+$domen = $_SERVER["HTTP_X_FORWARDED_PROTO"] . "://" . $_SERVER["HTTP_HOST"];
+
+$parse_url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+
+$real_page = $domen . $parse_url;
+
+$url_looks = $home . "/GB/" . md5($real_page) . ".dat";
+$count_looks = @file_get_contents($url_looks);
+
+if (!$_SESSION["count"]) {
+
+    @file_put_contents($url_looks, ($count_looks + 1));
+
+    $_SESSION["count"] = 1;
+}
+
+echo "<div class = 'count'>Kоличество посещений сайта $count_looks </div><br>";
+
+// Банлист
+
+if (isset($_SESSION['bantime']) && ($_SESSION['bantime'] > time())) {
+    echo "<div class = 'ban'>Вы забанины на: " . ($_SESSION['bantime'] - time()) . " c </div>";
+}
+
+// Добавления таблицы
 $result_count = $mysqli->query('SELECT count(*) FROM `table`'); //считаем количество строк в таблице
 $count = $result_count->fetch_array(MYSQLI_NUM)[0];
 echo "количество записей: " . $count;
@@ -44,7 +79,7 @@ for ($i = 1; $i <= $pagecount; $i++) {
 }
 $pagenation .= "</div>";
 
-
+// Заполнение таблицы
 $result = $mysqli->query("SELECT * FROM `table` LIMIT $startrow, $pagesize");
 echo $pagenation;
 echo "<table border='1'>\n";
