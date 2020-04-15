@@ -27,3 +27,7 @@ img {
 .time {
     font-size: 24pt;
 }
+
+body {
+    background-color: red;
+}
