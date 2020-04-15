@@ -1,3 +1,8 @@
+body {
+    background-color: lightcyan;
+
+}
+
 img {
     width: 1rem;
 }
@@ -26,8 +31,4 @@ img {
 
 .time {
     font-size: 24pt;
-}
-
-body {
-    background-color: red;
 }
